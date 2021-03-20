@@ -1,0 +1,68 @@
+<div class="pay-table">
+  <table>
+    <tr
+      *ngFor="let condition of conditions"
+      [ngClass]="{'pay-table-background-highlight': winState && condition.name == winState.condition.name}"
+    >
+      <td class="pay-table_name">
+        <ng-container [ngSwitch]="condition.name">
+          <ng-container *ngSwitchCase="'CHERRY_TOP'">
+            <img alt="Pay table Cherry image" src="assets/images/Cherry.png">
+            <img alt="Pay table Cherry image" src="assets/images/Cherry.png">
+            <img alt="Pay table Cherry image" src="assets/images/Cherry.png">
+            <span>TOP LINE</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'CHERRY_CENTER'">
+            <img alt="Pay table Cherry image" src="assets/images/Cherry.png">
+            <img alt="Pay table Cherry image" src="assets/images/Cherry.png">
+            <img alt="Pay table Cherry image" src="assets/images/Cherry.png">
+            <span>CENTER LINE</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'CHERRY_BOTTOM'">
+            <img alt="Pay table Cherry image" src="assets/images/Cherry.png">
+            <img alt="Pay table Cherry image" src="assets/images/Cherry.png">
+            <img alt="Pay table Cherry image" src="assets/images/Cherry.png">
+            <span>BOTTOM LINE</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'SEVEN_ANY'">
+            <img alt="Pay table 7 image" src="assets/images/7.png">
+            <img alt="Pay table 7 image" src="assets/images/7.png">
+            <img alt="Pay table 7 image" src="assets/images/7.png">
+            <span>ANY LINE</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'CHERRY_OR_SEVEN_ANY'">
+            <img alt="Pay table Cherry image" src="assets/images/Cherry.png">
+            <span>OR</span>
+            <img alt="Pay table 7 image" src="assets/images/7.png">
+            <span>ANY LINE</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'BAR3_ANY'">
+            <img alt="Pay table 3xBAR image" src="assets/images/3xBAR.png">
+            <img alt="Pay table 3xBAR image" src="assets/images/3xBAR.png">
+            <img alt="Pay table 3xBAR image" src="assets/images/3xBAR.png">
+            <span>ANY LINE</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'BAR2_ANY'">
+            <img alt="Pay table 2xBAR image" src="assets/images/2xBAR.png">
+            <img alt="Pay table 2xBAR image" src="assets/images/2xBAR.png">
+            <img alt="Pay table 2xBAR image" src="assets/images/2xBAR.png">
+            <span>ANY LINE</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'BAR_ANY'">
+            <img alt="Pay table BAR image" src="assets/images/BAR.png">
+            <img alt="Pay table BAR image" src="assets/images/BAR.png">
+            <img alt="Pay table BAR image" src="assets/images/BAR.png">
+            <span>ANY LINE</span>
+          </ng-container>
+          <ng-container *ngSwitchCase="'BARS_ANY'">
+            <img alt="Pay table BAR image" src="assets/images/BAR.png">
+            <img alt="Pay table 2xBAR image" src="assets/images/2xBAR.png">
+            <img alt="Pay table 3xBAR image" src="assets/images/3xBAR.png">
+            <span>ANY LINE</span>
+          </ng-container>
+        </ng-container>
+      </td>
+      <td class="pay-table_win"><span>{{condition.win}}</span></td>
+    </tr>
+  </table>
+</div>

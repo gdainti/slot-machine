@@ -1,0 +1,51 @@
+@import '../../assets/styles/variables';
+
+.pay-table {
+  background-color: $pay-table-bg;
+  margin-left: 10px;
+
+  .pay-table-background-highlight {
+    animation: pay-table-background-highlight 1s infinite;
+
+    @keyframes pay-table-background-highlight {
+      0%, 49% {
+        background-color: $highlight-bg;
+      }
+      50%, 100% {
+        background-color: transparent;
+      }
+    }
+  }
+
+  table {
+    border-collapse: collapse;
+  }
+
+  td {
+    border: 5px solid $slot-machine-bg;
+    vertical-align: middle;
+    padding: 5px 20px;
+  }
+
+  span {
+    font-size: 22px;
+  }
+
+  &_name {
+    span {
+      padding: 0px 4px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    img {
+      vertical-align: middle;
+      height: 30px;
+      transform: translateZ(0) scale(1, 1);
+    }
+  }
+
+  &_win {
+    padding-left: 20px;
+    text-align: center;
+  }
+}

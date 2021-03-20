@@ -1,0 +1,90 @@
+<div class="slot-machine_wrapper">
+  <div class="slot-machine">
+    <div
+      [ngStyle]="{ 'top': config.element.height / 2 }"
+      [ngClass]="{'reels-line-highlight': winState && winState.line == 'TOP'}"
+      class="reel-line-indicator reel-line-indicator_TOP"
+    ></div>
+  <div
+    [ngStyle]="{ 'top': config.element.height }"
+    [ngClass]="{'reels-line-highlight': winState && winState.line == 'CENTER'}"
+    class="reel-line-indicator reel-line-indicator_CENTER"
+  ></div>
+  <div
+    [ngStyle]="{ 'top': config.element.height + config.element.height / 2 }"
+    [ngClass]="{'reels-line-highlight': winState && winState.line == 'BOTTOM'}"
+    class="reel-line-indicator reel-line-indicator_BOTTOM"
+  ></div>
+
+    <div class="reels" [ngStyle]="{ 'height': config.element.height * 2 }">
+      <div class="reel-wrapper" *ngFor="let reel of reels">
+        <div
+          class="reel-inner"
+          [ngClass]="{'reel_spinning': reel.isSpinning, 'reel_stopping': reel.isStopping && !reel.isSpinning}"
+          [ngStyle]="{ 'top': -reel.topOffset }">
+          <div
+            [ngStyle]="{ 'height': config.element.height, 'width': config.element.width }"
+            class="reel_element"
+            *ngFor="let element of reel.elements"
+          >
+            <img [src]="element.image" alt="{{element.name}}">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+    <div class="balance-display">
+      <span class="balance">Balance: {{ balance }}</span>
+      <span *ngIf="winState" class="win blinker">Win: {{ winState.condition.win }}</span>
+      <span *ngIf="balance <= 0 && !isSpinning() && !winState" class="insert blinker">Insert coin</span>
+    </div>
+    <button
+      type="button"
+      (click)="spin()"
+      [disabled]="isSpinDisabled()"
+      class="spin_btn"
+    >spin</button>
+    </div>
+  </div>
+  <app-pay-table [conditions]="config.winStates" [winState]="winState"></app-pay-table>
+</div>
+
+<div class="debug-area-control">
+  <label for="debug-mode-checkbox">Debug Mode: </label>
+  <input
+    [disabled]="isSpinning()"
+    [checked]="isDebugMode"
+    (change)="isDebugMode = !isDebugMode"
+    id="debug-mode-checkbox"
+    type="checkbox"
+  >
+</div>
+
+<div class="debug-area" *ngIf="isDebugMode">
+  <label for="debug-balance">Balance:</label>
+  <input
+    id="debug-balance"
+    type="number"
+    placeholder="Enter your balance"
+    (keyup)="onBalanceChange($event)"
+    (change)="onBalanceChange($event)"
+    value={{balance}}
+  >
+  <div class="reels">
+    <div class="reel" *ngFor="let reel of reels">
+      <label for="select-element-{{reel.id}}" >Reel {{reel.id + 1}}: </label>
+      <select
+        id="select-element-{{reel.id}}"
+        (change)="onElementChange($event, reel.id)"
+        [value]="reel.target"
+      >
+        <option *ngFor="let element of debugElements">{{ element }}</option>
+      </select>
+
+      <select (change)="onLineChange($event, reel.id)" [value]="reel.line">
+        <option *ngFor="let line of debugLines">{{ line }}</option>
+      </select>
+
+    </div>
+  </div>
+</div>
