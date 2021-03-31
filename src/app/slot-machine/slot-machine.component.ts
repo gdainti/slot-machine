@@ -18,6 +18,7 @@ export class SlotMachineComponent {
   public reels: Reel[] = [];
   public balance: number = config.defaultBalance;
   public isDebugMode: boolean = false;
+  public isSpinningInProgress: boolean = false;
   public winState: WinState = null;
   public config = config;
 
@@ -71,12 +72,13 @@ export class SlotMachineComponent {
   }
 
   public isSpinning() {
-    return this.reels.some(it => it.isSpinning === true);
+    return this.reels.some(it => it.isSpinning === true) || this.isSpinningInProgress;
   }
 
   public async spin() {
     this.balance = Math.max(this.balance - config.spinCost, 0);
     this.winState = null;
+    this.isSpinningInProgress = true;
 
     this.reels.forEach(it => {
       it.isSpinning = true;
@@ -103,6 +105,9 @@ export class SlotMachineComponent {
       it.elements = this.slotMachineService.getVisibleElements(it.line, it.target);
       it.isSpinning = false;
     }
+
+    await this.slotMachineService.delay(500);
+    this.isSpinningInProgress = false;
 
     this.winState = this.slotMachineService.checkConditions(this.reels);
 

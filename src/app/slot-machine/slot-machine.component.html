@@ -49,8 +49,7 @@
   <app-pay-table [conditions]="config.winStates" [winState]="winState"></app-pay-table>
 </div>
 
-<div class="debug-area-control">
-  <label for="debug-mode-checkbox">Debug Mode: </label>
+<div class="debug-area-control"  [ngClass]="{'hidden': !isDebugMode}">
   <input
     [disabled]="isSpinning()"
     [checked]="isDebugMode"
