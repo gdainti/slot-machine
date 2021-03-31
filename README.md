@@ -1,7 +1,5 @@
 # slot-machine
 Slot machine simulation html5 web-app
-## Demo
-http://gdainti.com
 
 ## Contols
 Click SPIN to play (enter and spacebar keys work as well)
