@@ -106,7 +106,6 @@ export class SlotMachineComponent {
       it.isSpinning = false;
     }
 
-    await this.slotMachineService.delay(500);
     this.isSpinningInProgress = false;
 
     this.winState = this.slotMachineService.checkConditions(this.reels);
