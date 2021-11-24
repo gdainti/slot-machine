@@ -24,15 +24,15 @@ export const config = {
     },
     {
       name: ReelElementName.BAR2,
-      image: '/assets/images/2xBAR.png',
+      image: 'assets/images/2xBAR.png',
     },
     {
       name: ReelElementName.SEVEN,
-      image: '/assets/images/7.png',
+      image: 'assets/images/7.png',
     },
     {
       name: ReelElementName.CHERRY,
-      image: '/assets/images/Cherry.png',
+      image: 'assets/images/Cherry.png',
     },
   ],
   winStates: [
